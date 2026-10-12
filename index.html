@@ -115,6 +115,33 @@ footer{text-align:center;color:var(--mut);font-size:.9rem;padding:2rem 5vw}
  .clip{font-size:.7rem}
 }
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+
+ .lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 20px;
+  cursor: zoom-out;
+}
+.lightbox.open { display: flex; }
+.lightbox img {
+  max-width: 95vw;
+  max-height: 92vh;
+  object-fit: contain;
+  border-radius: 8px;
+}
+.lightbox .close {
+  position: absolute;
+  top: 16px;
+  right: 22px;
+  font-size: 34px;
+  color: #fff;
+  cursor: pointer;
+}
 </style>
 </head>
 <body>
@@ -257,6 +284,31 @@ let drag=false;tr.addEventListener('pointerdown',e=>{if(e.target.closest('a'))re
 /* Contact form opens the visitor's email app */
 $('#form').onsubmit=e=>{e.preventDefault();const f=e.target;
   location.href=`mailto:srmohanraj2005@gmail.com?subject=${encodeURIComponent('Project enquiry from '+f.n.value)}&body=${encodeURIComponent(f.m.value)}`};
+</script>
+ <div class="lightbox" id="lightbox">
+  <span class="close">&times;</span>
+  <img id="lightboxImg" src="" alt="Poster preview">
+</div>
+
+
+ <script>
+  const lightbox = document.getElementById('lightbox');
+  const lightboxImg = document.getElementById('lightboxImg');
+
+  document.addEventListener('click', (e) => {
+    const img = e.target.closest('img');
+if (!img || img.id === 'lightboxImg') return;
+lightboxImg.src = img.src;
+lightbox.classList.add('open');
+  });
+
+  lightbox.addEventListener('click', () => {
+    lightbox.classList.remove('open');
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') lightbox.classList.remove('open');
+  });
 </script>
 </body>
 </html>
