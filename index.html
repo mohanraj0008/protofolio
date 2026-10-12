@@ -246,7 +246,8 @@ const WORK=[
  {t:'Video',n:'Social Media Shorts',d:'Fast, punchy vertical cuts',url:''},
  {t:'Video',n:'Promotional Videos',d:'Brand and product promos',url:''},
  {t:'Video',n:'Creative Edits',d:'Experimental and styled edits',url:''},
- {t:'Design',n:'Poster',d:'Food promotion artwork',url:'',poster:'burger.jpg'},
+ {t:'Design',n:'Burger Poster',d:'Food promotion artwork',url:'',poster:'burger.jpg'},
+ {t:'Design',n:'Diwali Poster',d:'Diwali wishes design',url:'',poster:'diwali.jpg'},
  {t:'Design',n:'Festival Posters',d:'Celebration and event artwork',url:''},
  {t:'Design',n:'Academy Advertisements',d:'Ads for learning institutes',url:''},
  {t:'Design',n:'Business Promotion Designs',d:'Offers, launches, announcements',url:''},
@@ -295,12 +296,12 @@ $('#form').onsubmit=e=>{e.preventDefault();const f=e.target;
   const lightbox = document.getElementById('lightbox');
   const lightboxImg = document.getElementById('lightboxImg');
 
-  document.addEventListener('click', (e) => {
-    const img = e.target.closest('img');
-if (!img || img.id === 'lightboxImg') return;
-lightboxImg.src = img.src;
-lightbox.classList.add('open');
-  });
+document.addEventListener('click', (e) => {
+  const img = e.target.closest('img');
+  if (!img || img.id === 'lightboxImg') return;
+  lightboxImg.src = img.src;
+  lightbox.classList.add('open');
+});
 
   lightbox.addEventListener('click', () => {
     lightbox.classList.remove('open');
